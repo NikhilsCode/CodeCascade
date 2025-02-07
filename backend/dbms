@@ -1,0 +1,25 @@
+-- Environments table creation
+
+create table environments (envID INT AUTO_INCREMENT   PRIMARY key,
+                           envBranchName VARCHAR(150) UNIQUE,
+                           listOfBranch JSON,
+                           lastUpdated TIMESTAMP,
+                           deploymentEnvName VARCHAR(200));
+
+-- Insert in data base
+
+INSERT INTO environments (envID, envBranchName, listOfBranch, lastUpdated, deploymentEnvName) 
+VALUES 
+(2, 'dev', '["dev-branch1", "dev-branch2"]', '2024-12-26 15:30:00', 'Development'),
+(3, 'test', '["test-branch1", "test-branch2", "test-branch3"]', '2024-12-25 12:45:00', 'Testing'),
+(4, 'staging', '["stage-branch1", "stage-branch2"]', '2024-12-24 18:20:00', 'Staging');
+
+
+-- For updating the branch name list 
+
+UPDATE environments SET listOfBranch = '["dev-branch1", "dev-branch2", "ERM-2564"]' WHERE envId = 2 AND envBranchName = "dev";
+
+
+-- Delete Environments
+
+Delete FROM ENvironments where envId = 4 AND envBranchName = "staging";

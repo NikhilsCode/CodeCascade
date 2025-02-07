@@ -1,0 +1,44 @@
+input{
+    width: 100%;
+    padding: 10px;
+    border-radius: 5px;
+  }
+  button{
+    width: 100%;
+    padding: 10px;
+    border: 1px solid black;
+    border-radius:  5px !important;
+    background-color: rgb(241, 241, 241);
+  }
+  button:hover{
+    width: 100%;
+    padding: 10px;
+    color: white;
+    font-weight: 800;
+    background-color: rgb(8, 8, 244);
+  }
+  .custommultiSelect-card{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid black;
+    border-radius: 50px;
+    padding:1px 10px;
+    margin: 10px 2px;
+    
+  }
+  .custommultiSelect-card-paragraph{
+    padding: 0;
+    margin: 1px 5px;
+    /* padding:1px 5px; */
+  }
+  .custommultiSelect-card-button{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 20px;
+    height: 20px;
+    border: none;
+    font-size: 10px;
+  }
+  

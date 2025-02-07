@@ -1,0 +1,45 @@
+.environment-container {
+    display: flex;
+    gap: 1rem;
+    overflow-x: auto;
+    padding-bottom: 1rem;
+    white-space: nowrap;
+    scrollbar-width: none; /* Hide scrollbar in Firefox */
+  }
+  
+  .environment-container::-webkit-scrollbar {
+    display: none; /* Hide scrollbar in Chrome/Safari */
+  }
+  
+  .environment-card {
+    flex: 0 0 300px; /* Set a fixed width for each card */
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    background-color: #fff;
+    padding: 1rem;
+  }
+  
+  .environment-card h6 {
+    margin-bottom: 0.5rem;
+  }
+  
+  .environment-card ul {
+    max-height: 550px;
+    overflow-y: auto;
+    list-style: none;
+    padding: 0;
+  }
+  
+  .environment-card ul li {
+    margin: 0.5rem 0;
+  }
+  
+  .environment-card a {
+    text-decoration: none;
+    color: #007bff;
+  }
+  
+  .environment-card a:hover {
+    text-decoration: underline;
+  }
+  
