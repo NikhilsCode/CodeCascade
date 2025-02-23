@@ -40,6 +40,7 @@ To address this, I am developing a **Feature Branch Deployment Management Tool**
 - **Spring Boot** (Backend for managing deployment logic)
 - **React** (Frontend for UI interaction)
 - **Bash Scripts** (For deployment automation)
+- - **Mysql** (For storing data related to environment and branches)
 
 
 
