@@ -1,0 +1,20 @@
+.single-select-dropdown {
+  top: 100%;
+  left: 0;
+  right: 0;
+  background-color: white;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  margin-top: 4px;
+  max-height: 200px;
+  overflow-y: auto;
+  z-index: 1000;
+}
+
+.selected-environment {
+  background-color: #e6f3ff;
+}
+
+.cursor-pointer {
+  cursor: pointer;
+} 

@@ -1,0 +1,18 @@
+.selected-branch {
+    background-color: #93c5fd; /* Light blue */
+  }
+  
+  .multi-select-dropdown{
+    background-color: #f0f0f0;
+    z-index: 1000;
+    min-width: 500px;
+    max-width: 650px;
+  }
+  .selected-branch-tag {
+    display:inline-flex;
+
+    justify-content: space-between;
+  }
+  .selected-branch-tag p{
+    width: 200px;
+  }

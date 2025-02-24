@@ -12,20 +12,19 @@ TEST_BRANCH="testCheckBranch23456123"
 # Navigate to the project directory
 cd c:
 cd Eroam/Frontend/eroam2-front || { echo "Failed to navigate to project directory"; exit 1; }
-git checkout master;
+git checkout master || { echo "Failed to checkout source branch: $SOURCE_BRANCH"; exit 1; };
 echo "In c:/Eroam/Frontend/eroam2-front place"
 
 for PullBranch in "$@"; do
     echo "Switching to source branch: $SOURCE_BRANCH"
     git checkout -b $SOURCE_BRANCH 2>/dev/null || git checkout $SOURCE_BRANCH || { echo "Failed to checkout source branch: $SOURCE_BRANCH"; exit 1; }
 
-    echo "Creating test branch: $TEST_BRANCH"
-    git checkout -b $TEST_BRANCH || { echo "Failed to create test branch: $TEST_BRANCH"; exit 1; }
+ 
 
-    echo "Pulling branch '$PullBranch' into '$TEST_BRANCH' for conflict checks..."
+    echo "Pulling branch '$PullBranch' into '$SOURCE_BRANCH'"
 
 
-    # Attempt to pull the branch into the test branch
+    # Attempt to pull the branch into the source branch
     pull_output=$(git pull main $PullBranch 2>&1)
     echo "$pull_output"
 
@@ -33,17 +32,18 @@ for PullBranch in "$@"; do
     if echo "$pull_output" | grep -q "CONFLICT"; then
         echo "Merge conflicts detected while pulling '$PullBranch'. Rolling back changes..."
         git merge --abort || { echo "Failed to abort merge. Manual intervention needed."; exit 1; }
-        git checkout $SOURCE_BRANCH
-        git branch -D $TEST_BRANCH || { echo "Failed to delete test branch: $TEST_BRANCH"; exit 1; }
         exit 1
     fi
-
+    # Check for Aborting
+        if echo "$pull_output" | grep -q "Aborting"; then
+            echo "Aborting detected while pulling '$PullBranch'. Rolling back changes..."
+            git merge --abort || { echo "Failed to abort merge. Manual intervention needed."; exit 1; }
+            exit 1
+        fi
     # Check for swap file error
     if echo "$pull_output" | grep -q "Swap file"; then
         echo "Swap file error detected during pull from '$PullBranch'. Rolling back changes..."
         git merge --abort || { echo "Failed to abort merge. Manual intervention needed."; exit 1; }
-        git checkout $SOURCE_BRANCH
-        git branch -D $TEST_BRANCH || { echo "Failed to delete test branch: $TEST_BRANCH"; exit 1; }
         exit 1
     fi
 
@@ -51,43 +51,20 @@ for PullBranch in "$@"; do
     echo "No conflicts detected. Pull operation successful."
 
 
-    # Cleanup - Delete the test branch
-    echo "Deleting test branch '$TEST_BRANCH'..."
-    git checkout $SOURCE_BRANCH
-    git branch -D $TEST_BRANCH || { echo "Failed to delete test branch: $TEST_BRANCH"; exit 1; }
-
     # Final merge to the source branch if all checks pass
-    echo "Merging branch '$PullBranch' into source branch '$SOURCE_BRANCH'..."
-    git pull main $PullBranch || { echo "Merge failed. Aborting process."; git merge --abort; exit 1; }
     echo "Successfully merged branch '$PullBranch' into '$SOURCE_BRANCH'."
     echo ""
     echo ""
-    sleep 2
 done
-#yarn build;
 
-echo "Successfully completed operations for all branches!"
+# echo "Creating Building.........................."
+# build_output=$(yarn build 2>&1)
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+# if echo "$build_output" | grep -q "Build complete"; then
+#     echo "Successfully completed operations for all branches!"
+    exit 0
+# else
+#     echo "Build Failed!"
+#     echo "$build_output" # Optional: Print the build output for debugging.
+#     exit 1
+# fi

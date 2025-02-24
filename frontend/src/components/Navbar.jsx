@@ -10,30 +10,17 @@ function Navbar() {
             <div className="img-fluid me-2">
               <img src="vite.svg"></img>
             </div>
-            <Link className="navbar-brand" to="/">
-              branches
+            <Link className="navbar-brand" to="/branch">
+               Branch
             </Link>
-            <Link className="navbar-brand disabled" to="/about" disabled>
-              enviroments
+            <Link className="navbar-brand disabled" to="/environments" disabled>
+              Enviroments
             </Link>
-            <Link className="navbar-brand" to="/about">
-              settings
+            <Link className="navbar-brand" to="/deployment">
+              Deployment
             </Link>
           </div>
-          <div className="d-flex">
-            <div className="input-group mb-3">
-              <input
-                type="text"
-                className="form-control"
-                placeholder="Search"
-                aria-label="Search"
-                aria-describedby="basic-addon2"
-              />
-              <button className="input-group-text" id="basic-addon2">
-                <i className="bi bi-search"></i>
-              </button>
-            </div>
-          </div>
+         
         </div>
       </nav>
     </>

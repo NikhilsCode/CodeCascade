@@ -1,18 +1,15 @@
 .environment-container {
+  width: 100%;
     display: flex;
     gap: 1rem;
-    overflow-x: auto;
+    overflow-x: scroll;
     padding-bottom: 1rem;
-    white-space: nowrap;
-    scrollbar-width: none; /* Hide scrollbar in Firefox */
+
   }
   
-  .environment-container::-webkit-scrollbar {
-    display: none; /* Hide scrollbar in Chrome/Safari */
-  }
-  
+
   .environment-card {
-    flex: 0 0 300px; /* Set a fixed width for each card */
+    flex: 0 0 500px; /* Set a fixed width for each card */
     border: 1px solid #ddd;
     border-radius: 5px;
     background-color: #fff;
